@@ -1,0 +1,39 @@
+<ng-container *ngIf="course">
+  <div class="course-card" [ngClass]="cardClasses()">
+    <div class="course-title">
+      {{ course.description }}
+    </div>
+
+    <!-- @if(course.id == 1){
+    <h2>Course with ID 1</h2>
+    } @else if(course.iconUrl){
+    <img width="300" alt="Angular Logo" [src]="course.iconUrl" />
+    } @else {
+    <h2>No Image ivailable</h2>
+    } -->
+
+    <ng-content
+      select="course-image"
+      *ngIf="course.iconUrl; else noImage"
+    ></ng-content>
+
+    <ng-container
+      #noImage
+      *ngTemplateOutlet="
+        noImageTemplate;
+        context: { courseName: course.description }
+      "
+    >
+    </ng-container>
+
+    <!-- <div class="course-description">
+      {{ course.longDescription }}
+    </div> -->
+
+    <ng-content select=".course-description"></ng-content>
+
+    <ng-content></ng-content>
+
+    <button (click)="onViewCourse()">View Course</button>
+  </div>
+</ng-container>
