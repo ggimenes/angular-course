@@ -9,7 +9,7 @@
   <button (click)="onEditCourse()">Edit</button>
 </div>
 
-<div>
+<!-- <div>
   <div class="courses" *ngIf="courses$ | async as courses">
     <course-card
       *ngFor="let course of courses"
@@ -19,4 +19,13 @@
       <course-image [src]="course.iconUrl"></course-image>
     </course-card>
   </div>
+</div> -->
+
+<div class="courses" *ngIf="courses[0] as course">
+  <course-card
+    type="beginner"
+    [course]="course"
+  >
+    <course-image [src]="course.iconUrl"></course-image>
+  </course-card>
 </div>

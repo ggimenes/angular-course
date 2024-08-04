@@ -23,8 +23,8 @@ import { COURSES } from "src/db-data";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  // courses = COURSES;
-  courses$: Observable<Course[]>;
+  courses = COURSES;
+  // courses$: Observable<Course[]>;
 
   constructor(
     private coursesService: CoursesService,
@@ -34,12 +34,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courses$ = this.coursesService.loadCourses();
+    // this.courses$ = this.coursesService.loadCourses();
   }
 
   onEditCourse() {
-    const newCourse = { ...this.courses$[0] };
-    newCourse.description = "New Value!";
-    this.courses$[0] = newCourse;
+    // const newCourse = { ...this.courses$[0] };
+    // newCourse.description = "New Value!";
+    // this.courses$[0] = newCourse;
   }
 }
