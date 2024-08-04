@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Inject,
@@ -13,13 +14,16 @@ import { Course } from "./model/course";
 import { Observable } from "rxjs";
 import { CoursesService } from "./services/courses.service";
 import { AppConfig, CONFIG_TOKEN } from "./config";
+import { COURSES } from "src/db-data";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
+  // courses = COURSES;
   courses$: Observable<Course[]>;
 
   constructor(
@@ -31,5 +35,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.courses$ = this.coursesService.loadCourses();
+  }
+
+  onEditCourse() {
+    const newCourse = { ...this.courses$[0] };
+    newCourse.description = "New Value!";
+    this.courses$[0] = newCourse;
   }
 }
