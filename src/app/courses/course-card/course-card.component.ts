@@ -21,12 +21,16 @@ import {
 } from "@angular/core";
 import { Course } from "../../model/course";
 import { CourseImageComponent } from "../course-image/course-image.component";
+import { CourseTitleComponent } from "../course-title/course-title.component";
+import { NgIf } from "@angular/common";
 
 @Component({
-  selector: "course-card",
-  templateUrl: "./course-card.component.html",
-  styleUrls: ["./course-card.component.css"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "course-card",
+    templateUrl: "./course-card.component.html",
+    styleUrls: ["./course-card.component.css"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgIf, CourseTitleComponent, CourseImageComponent],
 })
 export class CourseCardComponent
   implements

@@ -18,12 +18,17 @@ import { AppConfig, CONFIG_TOKEN } from "./config";
 import { COURSES } from "src/db-data";
 import { createCustomElement } from "@angular/elements";
 import { CourseTitleComponent } from "./courses/course-title/course-title.component";
+import { NgIf, NgFor } from "@angular/common";
+import { CourseCardComponent } from "./courses/course-card/course-card.component";
+import { CourseImageComponent } from "./courses/course-image/course-image.component";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    styleUrls: ["./app.component.css"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgIf, NgFor, CourseCardComponent, CourseImageComponent],
 })
 export class AppComponent implements OnInit {
   courses = COURSES;
