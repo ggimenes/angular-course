@@ -19,6 +19,13 @@
 </div>
 
 <!-- *ngFor="let course of courses | filterByCategory: 'ADVANCED'" -->
+
+<div #prefetch>
+  <button #display>Display</button>
+</div>
+
+@defer (on interaction(display); prefetch on hover(prefetch)) {
+
 <div>
   <div class="courses" *ngIf="courses">
     <course-card
@@ -30,6 +37,18 @@
     </course-card>
   </div>
 </div>
+
+}
+@placeholder {
+  <h1>Placeholder</h1>
+}
+@loading {
+  <h1>Loading...</h1>
+}
+@error {
+  <h1>Error</h1>
+}
+
 
 <!-- <div class="courses" *ngIf="courses[0] as course">
   <course-card
