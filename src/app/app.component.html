@@ -5,12 +5,22 @@
   />
 </div>
 
+<h1 i18n="welcome message|Greeting to the user about starting the course@@welcomeMessage">Welcome to the Angular Course</h1>
+
 <div class="demo">
-  <button (click)="onEditCourse()">Edit</button>
+  <button (click)="onEditCourse()" i18n>Edit</button>
+
+  <div i18n>{coursesTotal, plural,
+    =0 {No courses available}
+    =1 {1 course available}
+    other { {{coursesTotal}} courses available}
+  }
+  </div>
 </div>
 
-<!-- <div>
-  <div class="courses" *ngIf="courses$ | async as courses">
+<!-- *ngFor="let course of courses | filterByCategory: 'ADVANCED'" -->
+<div>
+  <div class="courses" *ngIf="courses">
     <course-card
       *ngFor="let course of courses"
       type="beginner"
@@ -19,9 +29,9 @@
       <course-image [src]="course.iconUrl"></course-image>
     </course-card>
   </div>
-</div> -->
+</div>
 
-<div class="courses" *ngIf="courses[0] as course">
+<!-- <div class="courses" *ngIf="courses[0] as course">
   <course-card
     highlighted
     type="beginner"
@@ -29,4 +39,4 @@
   >
     <course-image [src]="course.iconUrl"></course-image>
   </course-card>
-</div>
+</div> -->

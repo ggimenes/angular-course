@@ -8,6 +8,7 @@ import {
   withInterceptorsFromDi,
 } from "@angular/common/http";
 import { CoursesModule } from "./courses/courses.module";
+import { CourseTitleComponent } from "./courses/course-title/course-title.component";
 
 @NgModule({
   declarations: [
@@ -16,5 +17,6 @@ import { CoursesModule } from "./courses/courses.module";
   bootstrap: [AppComponent],
   imports: [BrowserModule, CoursesModule, BrowserAnimationsModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],
+  // entryComponents: [CourseTitleComponent]
 })
 export class AppModule {}

@@ -5,6 +5,7 @@ import {
   ElementRef,
   Inject,
   Injectable,
+  Injector,
   OnInit,
   QueryList,
   ViewChild,
@@ -15,26 +16,37 @@ import { Observable } from "rxjs";
 import { CoursesService } from "./courses/services/courses.service";
 import { AppConfig, CONFIG_TOKEN } from "./config";
 import { COURSES } from "src/db-data";
+import { createCustomElement } from "@angular/elements";
+import { CourseTitleComponent } from "./courses/course-title/course-title.component";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   courses = COURSES;
+
+  coursesTotal = COURSES.length;
   // courses$: Observable<Course[]>;
 
   constructor(
     private coursesService: CoursesService,
-    @Inject(CONFIG_TOKEN) private config: AppConfig
+    @Inject(CONFIG_TOKEN) private config: AppConfig,
+    private injector: Injector
   ) {
     console.log(config);
   }
 
   ngOnInit() {
     // this.courses$ = this.coursesService.loadCourses();
+
+    const htmlElement = createCustomElement(CourseTitleComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define("course-title", htmlElement);
   }
 
   onEditCourse() {
