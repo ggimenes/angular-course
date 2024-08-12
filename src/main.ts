@@ -1,5 +1,7 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {provideRouter} from '@angular/router';
+import routeConfig from './app/routes';
 
 
 import { environment } from './environments/environment';
@@ -17,6 +19,7 @@ bootstrapApplication(AppComponent, {
         importProvidersFrom(BrowserModule),
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations(),
+        provideRouter(routeConfig)
     ]
 })
   .catch(err => console.log(err));

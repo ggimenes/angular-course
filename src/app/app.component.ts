@@ -21,14 +21,23 @@ import { CourseTitleComponent } from "./courses/course-title/course-title.compon
 import { NgIf, NgFor } from "@angular/common";
 import { CourseCardComponent } from "./courses/course-card/course-card.component";
 import { CourseImageComponent } from "./courses/course-image/course-image.component";
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
 @Component({
-    selector: "app-root",
-    templateUrl: "./app.component.html",
-    styleUrls: ["./app.component.css"],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [NgIf, NgFor, CourseCardComponent, CourseImageComponent],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgIf,
+    NgFor,
+    CourseCardComponent,
+    CourseImageComponent,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+  ],
 })
 export class AppComponent implements OnInit {
   courses = COURSES;
