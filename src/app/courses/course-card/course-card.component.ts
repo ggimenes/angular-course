@@ -18,6 +18,7 @@ import {
   QueryList,
   SimpleChanges,
   ViewEncapsulation,
+  input
 } from "@angular/core";
 import { Course } from "../../model/course";
 import { CourseImageComponent } from "../course-image/course-image.component";
@@ -40,11 +41,10 @@ export class CourseCardComponent
     AfterContentChecked,
     AfterViewChecked
 {
-  @Input()
-  course: Course;
 
-  @Input()
-  cardIndex: number;
+  course = input<Course>();
+
+  cardIndex = input<number>();
 
   @Output("courseChanged")
   courseEmitter = new EventEmitter<Course>();
@@ -67,10 +67,10 @@ export class CourseCardComponent
   ngOnDestroy(): void {}
 
   onSaveClicked(description: string) {
-    this.courseEmitter.emit({ ...this.course, description });
+    this.courseEmitter.emit({ ...this.course(), description });
   }
 
   onTitleChanged(newTitle: string) {
-    this.course.description = newTitle;
+    this.course().description = newTitle;
   }
 }

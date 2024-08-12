@@ -1,16 +1,16 @@
-<div class="course-card" *ngIf="course" #container>
+<div class="course-card" *ngIf="course()" #container>
   <div class="course-title">
     <!-- {{ cardIndex || "" + " " + course.description }} -->
-      <course-title [attr.title]="course.description" [title]="course.description"></course-title>
+      <course-title [attr.title]="course().description" [title]="course.description"></course-title>
   </div>
 
-  <ng-content select="course-image" *ngIf="course.iconUrl"></ng-content>
+  <ng-content select="course-image" *ngIf="course().iconUrl"></ng-content>
 
   <div class="course-description">
     Edit Title:
     <input
       #courseTitle
-      [value]="course.description"
+      [value]="course().description"
       (keyup)="onTitleChanged(courseTitle.value)"
     />
   </div>
@@ -18,7 +18,7 @@
   <div class="course-category">
     <div class="category" i18n>
       {
-        course.category,
+        course().category,
         select,
         BEGINNER {Beginner}
         INTERMEDIATE {Intermediate}
